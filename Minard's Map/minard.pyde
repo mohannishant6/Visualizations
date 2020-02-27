@@ -70,17 +70,20 @@ def setup():
     background(255);
     #noStroke();
     # noLoop();
-    frameRate(100);
+    frameRate(10);
 
 def scaleIt(x,feature,axis):
     if axis=='x':
         return ((x-min(feature))*1300/(max(feature)-min(feature)))+200
     else: 
         return height-((x-min(feature))*300/(max(feature)-min(feature)))-500
-        
+
+counter=0        
 def draw():
 
     background(loadImage('bg1.jpg'))
+    global counter
+    counter+=1
     
 # write viz heading
     fill(100)
@@ -90,21 +93,25 @@ def draw():
             
 # draw path
     for i in range(0,47):
-        x_from=scaleIt(lonp[i],lonp,'x')
-        y_from=scaleIt(latp[i],latp,'y')
-        x_to=scaleIt(lonp[i+1],lonp,'x')
-        y_to=scaleIt(latp[i+1],latp,'y')
-        strokeWeight((surv[i]*50.0)/max(surv))
-        strokeJoin(ROUND);
-        
-        if divn[i]==1:
-            stroke(148,0,211,120)
-        elif divn[i]==2:
-            stroke(255,153,51,180)
-        else:
-            stroke(0,204,102,120)
-        # delay(10);
-        line(x_from,y_from,x_to,y_to)
+        if i<counter:
+            x_from=scaleIt(lonp[i],lonp,'x')
+            y_from=scaleIt(latp[i],latp,'y')
+            x_to=scaleIt(lonp[i+1],lonp,'x')
+            y_to=scaleIt(latp[i+1],latp,'y')
+            
+            strokeJoin(ROUND);
+            
+            if divn[i]==1:
+                stroke(148,0,211,190)
+                strokeWeight((surv[i]*40.0)/max(surv))
+            elif divn[i]==2:
+                stroke(255,153,51,210)
+                strokeWeight((surv[i]*80.0)/max(surv))
+            else:
+                stroke(0,204,102,190)
+                strokeWeight((surv[i]*100.0)/max(surv))
+            # delay(10);
+            line(x_from,y_from,x_to,y_to)
 
 # write city name at appropriate coordinate
     for i,c in enumerate(city):
@@ -113,6 +120,7 @@ def draw():
         # print x,y
         fill(250)
         stroke(150)
+        strokeWeight(1)
         circle(x,y,10)
         fill(50)
         textSize(15)
@@ -143,17 +151,16 @@ def draw():
     text("Temperature (C)",350,750)
     strokeWeight(10);
     strokeJoin(ROUND);
-    stroke(98, 252, 134, 150);
-    
+
     for i in range(0,len(temp)-1):
         x_from=scaleIt(temp_lon[i],temp_lon,'x')
         y_from=scaleIt(temp[i],temp,'y')+400
         x_to=scaleIt(temp_lon[i+1],temp_lon,'x')
         y_to=scaleIt(temp[i+1],temp,'y')+400
-        stroke(255,69,0,100)
+        stroke(255,0,0,180)
         strokeWeight(temp[i]+40)
         line(x_from,y_from,x_to,y_to);
         fill(50);
         textSize(15);
         text(str(temp[i])[0:3]+'C',x_from,y_from);
-                        
+         
