@@ -4,3 +4,5 @@ Minard’s visualization depicting the horrific loss of life that Napoleon’s a
 # Tools Used
 Platform: Processing 3
 Language: Python
+
+![image](https://github.com/mohannishant6/Visualizations/blob/master/Minard's%20Map/minard.gif)
