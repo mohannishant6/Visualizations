@@ -5,4 +5,4 @@ This visualization consists of a graphic, which was originally used by nurse, st
 Platform: Processing 3
 Language: Python
 
-![snap]Nightingale's Rose/snapshot.jpg
+![snap](https://github.com/mohannishant6/Visualizations/blob/master/Nightingale's%20Rose/snapshot.jpg)
